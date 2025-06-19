@@ -10,7 +10,12 @@
       "Bash(*worker*_done.txt*)",
       "Bash(mkdir:*)",
       "Bash(then)",
-      "Bash(else)"
+      "Bash(else)",
+      "Bash(for i in {0..3})",
+      "Bash(do tmux send-keys -t multiagent:0.$i 'claude' C-m)",
+      "Bash(done)",
+      "Bash(do tmux send-keys -t multiagent:0.$i C-c)",
+      "Bash(do tmux send-keys -t multiagent:0.$i 'exit' C-m)"
     ],
     "deny": []
   }
