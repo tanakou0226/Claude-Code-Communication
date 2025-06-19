@@ -16,4 +16,8 @@
 ```
 
 ## 基本フロー
-PRESIDENT → boss → workers → boss → PRESIDENT 
+PRESIDENT → boss → workers → boss → PRESIDENT
+
+## ディレクトリ構成
+input: kaggleからダウンロードした入力データ
+output: 提出ファイル
