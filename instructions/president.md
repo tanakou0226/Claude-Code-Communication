@@ -9,7 +9,7 @@
 
 ## 送信コマンド
 ```bash
-./agent-send.sh boss "あなたはbossです。Hello World プロジェクト開始指示"
+./agent-send.sh boss1 "あなたはbossです。Hello World プロジェクト開始指示"
 ```
 
 ## 期待される完了報告

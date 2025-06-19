@@ -20,7 +20,7 @@ touch ./tmp/worker1_done.txt  # worker1の場合
 # 全員の完了確認
 if [ -f ./tmp/worker1_done.txt ] && [ -f ./tmp/worker2_done.txt ]; then
     echo "全員の作業完了を確認（最後の完了者として報告）"
-    ./agent-send.sh boss "全員作業完了しました"
+    ./agent-send.sh boss1 "全員作業完了しました"
 else
     echo "他のworkerの完了を待機中..."
 fi
@@ -32,4 +32,4 @@ fi
 - 最後に完了した人だけがbossに報告する
 
 ## 具体的な送信例
-- すべてのworker共通: `./agent-send.sh boss "全員作業完了しました"`
+- すべてのworker共通: `./agent-send.sh boss1 "全員作業完了しました"`
