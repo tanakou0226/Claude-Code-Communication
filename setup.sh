@@ -37,14 +37,15 @@ log_info "📺 multiagentセッション作成開始 (3ペイン)..."
 # 最初のペイン作成
 tmux new-session -d -s multiagent -n "agents"
 
-# 3ペイン構成作成
+# 3ペイン構成作成: 左半分がboss、右半分を上下に分けてworker1,2
 tmux split-window -h -t "multiagent:0"      # 水平分割（左右）
-tmux select-pane -t "multiagent:0.0"
-tmux split-window -v                        # 左側を垂直分割
+tmux select-pane -t "multiagent:0.1"
+tmux split-window -v                        # 右側を垂直分割
 
 # ペインタイトル設定
 log_info "ペインタイトル設定中..."
 PANE_TITLES=("boss" "worker1" "worker2")
+PANE_MAPPING=(0 1 2)  # boss=pane0, worker1=pane1, worker2=pane2
 
 for i in {0..2}; do
     tmux select-pane -t "multiagent:0.$i" -T "${PANE_TITLES[$i]}"
@@ -96,9 +97,9 @@ echo ""
 # ペイン構成表示
 echo "📋 ペイン構成:"
 echo "  multiagentセッション（3ペイン）:"
-echo "    Pane 0: boss      (チームリーダー)"
-echo "    Pane 1: worker1   (実行担当者A)"
-echo "    Pane 2: worker2   (実行担当者B)"
+echo "    Pane 0: boss      (チームリーダー) [左半分]"
+echo "    Pane 1: worker1   (実行担当者A)  [右上]"
+echo "    Pane 2: worker2   (実行担当者B)  [右下]"
 echo ""
 echo "  presidentセッション（1ペイン）:"
 echo "    Pane 0: PRESIDENT (プロジェクト統括)"
@@ -115,7 +116,7 @@ echo "  2. 🤖 Claude Code起動:"
 echo "     # 手順1: President認証"
 echo "     tmux send-keys -t president 'claude' C-m"
 echo "     # 手順2: 認証後、multiagent一括起動"
-echo "     for i in {0..2}; do tmux send-keys -t multiagent:0.\$i 'claude' C-m; done"
+echo "     for i in {0..2}; do tmux send-keys -t multiagent:0.\$i 'claude --dangerously-skip-permissions' C-m; done"
 echo ""
 echo "  3. 📜 指示書確認:"
 echo "     PRESIDENT: instructions/president.md"
