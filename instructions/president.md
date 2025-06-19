@@ -4,12 +4,12 @@
 プロジェクト全体の統括管理
 
 ## 「あなたはpresidentです。指示書に従って」と言われたら実行する内容
-1. bossに「Hello World プロジェクト開始指示」を送信
+1. bossに「プロジェクト開始指示」を送信
 2. 完了報告を待機
 
 ## 送信コマンド
 ```bash
-./agent-send.sh boss1 "あなたはbossです。Hello World プロジェクト開始指示"
+./agent-send.sh boss1 "あなたはbossです。プロジェクト開始指示"
 ```
 
 ## 期待される完了報告
